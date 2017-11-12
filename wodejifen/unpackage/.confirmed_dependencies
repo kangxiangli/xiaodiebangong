@@ -1,0 +1,300 @@
+{
+	"index.html": {
+		"resources": [
+			"js/fastclick.js",
+			"saomiaoduoge/js/scan.js",
+			"img/dlzc/login_logo_@2x.png",
+			"css/style.css",
+			"js/global.js",
+			"img/dlzc/sj@2x.png",
+			"css/public.css",
+			"img/bg.jpg",
+			"js/appcan.js",
+			"images/status.gif",
+			"img/dlzc/mm@2x.png",
+			"dk.html",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"dk.html"
+		]
+	},
+	"dk.html": {
+		"resources": [
+			"img/dlzc/2kq@2x.png",
+			"img/dlzc/dh@2x.png",
+			"img/nav_fh@2x2.png",
+			"mobiscroll/css/mobiscroll_002.css",
+			"img/cehua/3@2x.png",
+			"img/dlzc/dx@2x.png",
+			"img/dlzc/4xx@x.png",
+			"js/saomaJs/zy_control.js",
+			"mobiscroll/js/mobiscroll_003.js",
+			"css/bootstrap.min.css",
+			"img/dlzc/2jb@2x.png",
+			"img/qztc.png",
+			"img/cehua/8@2x.png",
+			"img/dlzc/3wq@2x.png",
+			"mobiscroll/js/mobiscroll.js",
+			"img/dlzc/xj@2x.png",
+			"js/iscroll.js",
+			"js/bootstrap.min.js",
+			"img/hollow.png",
+			"img/dlzc/big_head.png",
+			"img/dlzc/3tx@2x.png",
+			"mobiscroll/js/mobiscroll_002.js",
+			"img/nav_fh@2x.png",
+			"img/dlzc/nf@2x.png",
+			"img/cehua/6@2x.png",
+			"img/dlzc/youj.png",
+			"img/dlzc/1qd@2x.png",
+			"js/initial_date.js",
+			"img/cehua/5@2x.png",
+			"img/down1.png",
+			"mobiscroll/css/mobiscroll.css",
+			"img/cz_03.png",
+			"img/cehua/2@2x.png",
+			"img/dlzc/head.png",
+			"img/chbg.jpg",
+			"mobiscroll/js/mobiscroll_005.js",
+			"img/dlzc/1qj@2x.png",
+			"img/cehua/4@2x.png",
+			"img/solid.png",
+			"img/cehua/7@2x.png",
+			"mobiscroll/js/mobiscroll_004.js",
+			"mobiscroll/css/mobiscroll_003.css",
+			"img/cehua/1@2x.png",
+			"saomiaoduoge/index.html",
+			"img/bg.jpg",
+			"images/status.gif",
+			"css/public.css",
+			"saomiaoduoge/js/scan.js",
+			"img/dlzc/login_logo_@2x.png",
+			"css/style.css",
+			"js/appcan.js",
+			"guanyuwomen/index.html",
+			"img/12@2x.png",
+			"js/global.js",
+			"wodejifen/wodejifen.html"
+		],
+		"refer": [
+			"saomiaoduoge/index.html",
+			"guanyuwomen/index.html",
+			"wodejifen/wodejifen.html"
+		]
+	},
+	"saomiaoduoge/index.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/immersed.js",
+			"img/barcode.png",
+			"css/public.css",
+			"img/bg.jpg",
+			"img/nav_fh@2x.png",
+			"js/jquery.min.js",
+			"css/mui.min.css",
+			"js/jquery.cookie.js",
+			"js/global.js",
+			"saomiaoduoge/js/index.js",
+			"js/mui.js",
+			"dk.html",
+			"js/public.js",
+			"images/piliang@2x.png"
+		],
+		"refer": [
+			"saomiaoduoge/barcode_scan.html",
+			"plus/doc.html",
+			"saomiaoduoge/barcode_scan2.html",
+			"dk.html",
+			"saomiaoduoge/erweima.html"
+		]
+	},
+	"saomiaoduoge/barcode_scan.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css"
+		],
+		"refer": []
+	},
+	"plus/barcode.html": {
+		"refer": [
+			"plus/barcode_scan.html",
+			"plus/doc.html"
+		],
+		"resources": []
+	},
+	"plus/barcode_scan.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css"
+		],
+		"refer": []
+	},
+	"plus/doc.html": {
+		"resources": [
+			"js/immersed.js"
+		],
+		"refer": [
+			"doc/barcode.html"
+		]
+	},
+	"doc/barcode.html": {
+		"resources": [
+			"doc/res/doc.css",
+			"doc/res/prettify.js",
+			"doc/res/prettify.sons.css",
+			"doc/res/doc.js"
+		],
+		"refer": []
+	},
+	"saomiaoduoge/barcode_scan2.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/jquery.min.js",
+			"saomiaoduoge/js/index.js",
+			"css/mui.min.css",
+			"js/jquery.cookie.js",
+			"js/global.js",
+			"login/login.html",
+			"js/mui.js"
+		],
+		"refer": [
+			"login/login.html"
+		]
+	},
+	"login/login.html": {
+		"resources": [
+			"css/media.css-750.css",
+			"login/dm.png",
+			"login/login.css",
+			"img/bg.jpg",
+			"dk.html",
+			"js/global.js"
+		],
+		"refer": [
+			"dk.html"
+		]
+	},
+	"0-fastion-download/index.html": {
+		"resources": [
+			"0-fastion-download/images/logo@2x.png",
+			"0-fastion-download/images/Bg@2x.png",
+			"0-fastion-download/images/button@2x.png",
+			"0-fastion-download/css/index.css",
+			"0-fastion-download/images/font.png"
+		],
+		"refer": []
+	},
+	"download/index.html": {
+		"resources": [
+			"download/css/index.css",
+			"download/img/wenhao@2x.png",
+			"download/img/android@2x.png",
+			"download/img/ios@2x.png",
+			"download/img/bg@2x.png",
+			"download/img/logo@2x.png"
+		],
+		"refer": []
+	},
+	"download/index(4).html": {
+		"resources": [
+			"download/dlogo.png",
+			"download/wen.png"
+		],
+		"refer": []
+	},
+	"guanyuwomen/index1.html": {
+		"resources": [
+			"js/fastclick.js",
+			"img/nav_fh@2x.png",
+			"js/iscroll.js",
+			"js/update.js",
+			"js/global.js",
+			"css/public.css",
+			"img/bg.jpg"
+		],
+		"refer": []
+	},
+	"guanyuwomen/index.html": {
+		"resources": [
+			"dk.html",
+			"js/fastclick.js",
+			"img/nav_fh@2x.png",
+			"js/iscroll.js",
+			"js/update.js",
+			"js/global.js",
+			"css/public.css",
+			"img/bg.jpg",
+			"js/mui.js",
+			"qiangzhituichu/js/aeshelper-min.js",
+			"js/initial_date.js"
+		],
+		"refer": [
+			"dk.html"
+		]
+	},
+	"wodejifen/pay.html": {
+		"resources": [
+			"wodejifen/js/mui.zoom.js",
+			"wodejifen/js/tools.js",
+			"wodejifen/js/mui.previewimage.js",
+			"wodejifen/js/mui.min.js",
+			"js/immersed.js",
+			"wodejifen/css/wodejifen.css",
+			"js/jquery.min.js",
+			"img/nav_fh@2x.png",
+			"js/iscroll.js",
+			"wodejifen/js/wodejifen.js",
+			"js/global.js",
+			"css/public.css",
+			"img/bg.jpg"
+		]
+	},
+	"wodejifen/wodejifen.html": {
+		"resources": [
+			"wodejifen/css/wodejifen.css",
+			"wodejifen/pay.html",
+			"wodejifen/jifenimg/k@2x.png",
+			"wodejifen/js/wodejifen.js"
+		],
+		"refer": [
+			"wodejifen/pay.html"
+		]
+	},
+	"saomiaoduoge/erweima.html": {
+		"refer": [
+			"saomiaoduoge/barcode_scan2.html",
+			"saomiaoduoge/index.html",
+			"saomiaoduoge/barcode_scan3.html"
+		],
+		"resources": [
+			"saomiaoduoge/js/index.js",
+			"js/common.js",
+			"css/common.css",
+			"img/nav_fh@2x.png",
+			"css/mui.min.css",
+			"js/jquery.cookie.js",
+			"js/global.js",
+			"css/public.css",
+			"img/bg.jpg",
+			"js/mui.js",
+			"js/immersed.js",
+			"saomiaoduoge/index.html"
+		]
+	},
+	"saomiaoduoge/barcode_scan3.html": {
+		"resources": [
+			"js/jquery.min.js",
+			"saomiaoduoge/js/index.js",
+			"js/common.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"js/jquery.cookie.js",
+			"js/global.js",
+			"js/mui.js"
+		]
+	}
+}

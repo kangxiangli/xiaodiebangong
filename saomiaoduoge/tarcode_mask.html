@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>条码码</title>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/mui.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/tarCode.css" />
+		<!--tarcode-make的css-->
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script>
+			(function(a,b){
+        function fontsize(){
+            b.documentElement.style.fontSize=20*b.documentElement.clientWidth/320+'px';
+        }
+        fontsize();
+        a.addEventListener('resize',fontsize,false);
+    })(window,document);
+
+			function open() {
+
+				var barcode = plus.webview.getWebviewById("tarcode_scan.html");
+//								alert(barcode.id)
+				barcode.evalJS("startRecognize()")
+			}
+			mui.plusReady(function() {
+				open();
+			});
+		</script>
+	</head>
+	<style>
+		#header {
+			background-color: #4F4D72;
+			height: 50px;
+			line-height: 50px;
+		}
+		
+		.nvtt {
+			font-size: 16px;
+		}
+		
+		ul,
+		li {
+			list-style: none;
+		}
+		
+		.wrap {
+			margin: 0px auto;
+		}
+		
+		.hide {
+			display: none;
+		}
+		
+		#tab_t {
+			margin-left: 15%;
+			height: 30px;
+		}
+		
+		#tab_t li {
+			float: left;
+			width: 80px;
+			height: 33px;
+			line-height: 33px;
+			color: #fff;
+			text-align: center;
+			border: 1px solid #ccc;
+			border: none;
+			background:	#4F4D72; 
+			opacity: 0.5;
+			cursor: pointer
+		}
+		
+		#tab_t li:nth-child(1) {
+			border-radius: 5px 0px 0px 5px;
+		}
+		
+		#tab_t li:nth-child(2) {
+			border-radius: 0px 5px 5px 0px;
+		}
+		
+		#tab_t .act {
+			position: relative;
+			height: 33px;
+			line-height: 33px;
+			background: #F14F48;
+		}
+		
+		#tab_c {
+			/*	background: red;*/
+			height: 300px;
+			margin-top: 90%;
+			/*padding: 20px;*/
+		}
+		
+		#tab_c #Gallery {
+			height: 300px;
+		}
+		
+		.mui-slider-group {
+			height: 300px;
+		}
+		
+		#bcid1 {
+			position: fixed;
+			/*height: 260px;
+				width: 100%;*/
+			height: 50%;
+			width: 100%;
+			background: rgb(221, 160, 221);
+		}
+		
+		.idoc {
+			width: 1rem;
+	height: 1rem;
+	margin-top: 0.6rem;
+	margin-left:0.8rem;
+	background:url("img/2er@2x.png") no-repeat;
+	background-size: cover;
+}
+	</style>
+
+	<body>
+		<!--	<div class="magin_mid">-->
+		<header id="header">
+			<div class="nvbt iback" ></div>
+			<div class="nvtt">扫码/批量</div>
+			<div class="nvbt idoc" ></div>
+
+		</header>
+
+		<div class="content">
+			<div class="wrap">
+				<ul id="tab_t">
+					<li id="tab_s" class="act">扫描</li>
+
+					<li>批量</li>
+
+				</ul>
+				<!--<div id="bcid1">-->
+				<div id="tab_c">
+					<div></div>
+					<div class="hide">
+
+						<div id="Gallery">
+							<div class="mui-slider-group">
+
+								<div class="mui-slider-item sm_item slide_box_1">
+									<div id="sm_code_content" class="sm_code_content">
+										<!--<div id="code_content_1">
+							扫描成功
+						</div>-->
+
+									</div>
+								</div>
+
+								<div class="mui-slider-item slide_box_2">
+
+									<div class="btn_qd">
+										<span id="sm_sended" class="sm_sended">发送</span>
+										<span id="sm_clear" class="sm_clear" >清空</span>
+									</div>
+
+									<div id="code_content">
+
+										<ul id="OA_task_2" class="mui-table-view OA_task_2">
+
+											<!--<li class="mui-table-view-cell " data-html="details.html">
+												<div class="mui-slider-right mui-disabled">
+													<a class="mui-btn mui-btn-red">删除</a>
+												</div>
+												<div class="mui-slider-handle mui-table">
+													<div class="sm_code">
+														UGFU2038629874
+													</div>
+
+												</div>
+											</li>-->
+
+										</ul>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<!--</div>-->
+
+			</div>
+
+		</div>
+
+		<!--	</div>-->
+
+		<!--	</div>-->
+
+	</body>
+
+	<script type="text/javascript">
+		(function($) {
+			var btnArray = ['确认', '取消'];
+			//第二个demo，向左拖拽后显示操作图标，释放后自动触发的业务逻辑
+			$('#OA_task_2').on('slideleft', '.mui-table-view-cell', function(event) {
+				var elem = this;
+				mui.confirm('提示：数据删除后无法恢复', '确认删除该条记录？', btnArray, function(e) {
+					if(e.index == 0) {
+						elem.parentNode.removeChild(elem);
+
+					} else {
+						setTimeout(function() {
+							$.swipeoutClose(elem);
+						}, 0);
+					}
+				}, "div");
+			});
+
+		})(mui);
+	</script>
+
+</html>
+
+<script>
+	window.onload = function() {
+		var tab_t = document.getElementById("tab_t");
+		var tab_t_li = tab_t.getElementsByTagName("li");
+		var tab_c = document.getElementById("tab_c");
+		var tab_c_li = tab_c.getElementsByTagName("div");
+		var len = tab_t_li.length;
+		var i = 0;
+
+		for(i = 0; i < len; i++) {
+			tab_t_li[i].index = i;
+			tab_t_li[i].onclick = function() {
+				for(i = 0; i < len; i++) {
+					tab_t_li[i].className = '';
+					tab_c_li[i].className = 'hide';
+				}
+				tab_t_li[this.index].className = 'act';
+				tab_c_li[this.index].className = '';
+			}
+		}
+
+	}
+	//点击返回
+		$(".iback").click(function() {
+			var tarcodeS=plus.webview.getWebviewById("tarcode_scan.html");
+		 		plus.webview.close(tarcodeS);
+		  closeWin();
+		  
+	
+		})
+		//点击条形码
+	$(".idoc").click(function() {
+		var tarcodeView=plus.webview.getWebviewById("tarcode_scan.html");
+
+		   tarcodeView.evalJS("closeScan()");
+		 	openNewWin("barcode_scan2.html");
+		 		var tarcodeS=plus.webview.getWebviewById("tarcode_scan.html");
+		 		plus.webview.close(tarcodeS);
+		     closeWin();
+	})
+ function closeScan(){
+ 	scan.close();
+ }
+	//条形码js
+	var cleanHistroy;
+	var getRelute;
+	var ResultAry = new Array();
+	//mui.ready(function() {
+
+	getRelute = function(result) {
+//			alert($("tab_s").attr('class'))
+			if($("#tab_s").hasClass("act")) {
+				oneCode(result);
+			} else {
+				moreCode(result);
+			}
+			function oneCode(result) {
+				var barcode = result;
+				AdminId = localStorage.AdminId;
+//				var AdminId = 3134;
+				$.xiaodie.ajax({
+					url: "/Msg/SendBarCodeInfo",
+					type: "post",
+					data: {
+						barcode: barcode,
+						AdminId: AdminId
+					},
+					success: function(data) {
+						if(data.ResultType == "3") {
+							mui.toast("发送成功")
+
+						} else {
+							showMsg(data.Message)
+						}
+					},
+					error: function(data) {
+						mui.toast("发送失败")
+						console.log(JSON.stringify(data));
+					}
+				});
+
+			};
+
+			function moreCode(result) {
+				if($('.sm_code[data-result=' + result + ']').length == 0 || $('.sm_code[data-result=' + result + ']').length == "undefind") {
+					var str = "";
+					str = '<li class="mui-table-view-cell "><div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red">删除</a></div><div class="mui-slider-handle mui-table"><div class="sm_code" data-result="' + result + '">' + result + '</div></div></li>';
+					$('.OA_task_2').append(str);
+				} else {
+					mui.toast("该条码重复")
+				}
+				//window.localStorage.setItem('ResultAry', ResultAry);
+			}
+
+			//点击发送执行的函数
+			$("#sm_sended").click(function() {
+				var ResultAry = [];
+				$(".sm_code").each(function(i, item) {
+					ResultAry.push($(item).text());
+				})
+//				console.log("条码 " + ResultAry)
+				AdminId = localStorage.AdminId;
+
+//				var AdminId = 3134;
+				$.xiaodie.ajax({
+					url: "/Msg/SendBarCodeInfo",
+					type: "post",
+					data: {
+						barcode: ResultAry,
+						AdminId: AdminId
+					},
+					success: function(data) {
+						if(data.ResultType == "3") {
+							mui.toast("发送成功");
+							if(window.localStorage) {
+								window.localStorage.setItem('ResultAry', "")
+								$(".OA_task_2 ").html("");
+							};
+
+						} else {
+							showMsg(data.Message)
+						}
+					},
+					error: function(data) {
+						mui.toast("发送失败");
+						console.log(JSON.stringify(data));
+					}
+				});
+
+			});
+			
+			//点击清空执行的函数
+			$("#sm_clear").click(function() {
+				$(".OA_task_2 li").remove();
+				})
+		
+
+			//条码去重
+			function unique(arr) {
+				var newArr = [];
+				for(var i = 0, len = arr.length; i < len; i++) {
+					for(var j = i + 1; j < len; j++) {
+						if(arr[i] === arr[j]) { //获取没重复的最右一值放入新数组
+							++i;
+						}
+					}
+					newArr.push(arr[i]);
+				}
+				return newArr;
+			}
+			}
+</script>

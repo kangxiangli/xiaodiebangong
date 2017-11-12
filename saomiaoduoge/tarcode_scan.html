@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>条码</title>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8"/>
+		<style type="text/css">
+#bcid1{
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	bottom: 44px;
+	text-align: center;
+}
+.tip {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-shadow: 0px -1px #103E5C;
+}
+	</style>
+	</head>
+	<body style="background-color: #000000;">
+		<div id="bcid1">
+			<div style="height:40%"></div>
+			<p class="tip">...载入中...</p>
+		</div>
+	</body>
+</html>
+<script>
+	mui.init({
+        keyEventBind: {
+            backbutton: false  //关闭back按键监听
+        }
+    });
+  
+	var startRecognize;
+	var closeScan;
+	mui.plusReady(function() {
+		var ws = null;
+		wc = null;
+		// 扩展API加载完毕，现在可以正常调用扩展API 
+		function plusReady() {
+			ws = plus.webview.currentWebview();
+			showSide();
+			
+			// 用户点击后
+			
+		}
+		// 判断扩展API是否准备，否则监听"plusready"事件
+		if(window.plus) {
+			plusReady();
+		} else {
+			document.addEventListener("plusready", plusReady, false);
+		}
+		// 显示tarmark页面
+		function showSide() {
+			// 防止快速点击可能导致多次创建
+			
+			if(wc) {
+				return;
+			}
+			// 开启遮罩
+			//	ws.setStyle({mask:"rgba(0,0,0,0.5)"});
+			// 创建tarmark页面
+			wc = plus.webview.create("tarcode_mask.html", "tarcode_mask.html", {
+				left: "0",
+				bottom: "0px",
+				top: "0px",
+				width: "100%",
+				popGesture: "none",
+				background: 'transparent'
+			});
+			// tarmark页面加载后显示（避免白屏）
+			wc.addEventListener("loaded", function() {
+				wc.show("none", 0);
+
+			}, false);
+		};
+
+		// 扩展API加载完毕后调用onPlusReady回调函数 
+		document.addEventListener("plusready", onPlusReady, false);
+		// 扩展API加载完毕，现在可以正常调用扩展API
+		function onPlusReady() {
+			var e = document.getElementById("scan");
+			//e.removeAttribute("disabled");
+		};
+		var scan = null;
+		startRecognize = function() {
+			var filter = [plus.barcode.CODE39, plus.barcode.CODE93];
+			scan = new plus.barcode.Barcode("bcid1", filter,{
+		frameColor: '#EEAEEE',
+		scanbarColor: '#EEAEEE'
+	});
+			scan.onmarked = onmarked;
+			startScan();
+		}
+
+		function onmarked(type, result) {
+			result = result.replace(/\n/g, '');
+			var tarMarkV = plus.webview.getWebviewById('tarCode_mask.html');
+			console.log( JSON.stringify(tarMarkV.id));
+			tarMarkV.evalJS("getRelute('" + result + "')");
+			setTimeout(startScan,1000)
+			
+		}
+
+		function startScan() {
+			scan.start();
+		}
+
+		function cancelScan() {
+			scan.cancel();
+		}
+
+		function setFlash() {
+			scan.setFlash();
+		}
+
+		closeScan=function () {
+			console.log("close");
+			scan.close();
+		}
+
+	});
+</script>

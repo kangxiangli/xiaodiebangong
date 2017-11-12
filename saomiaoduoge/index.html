@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<!-- 禁止添加小广告-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- QQ强制全屏 -->
+		<meta name="full-screen" content="yes" />
+		<!-- UC强制全屏 -->
+		<meta name="x5-orientation" content="portrait" />
+		<meta name="keywords" content="零时尚打卡" />
+		<!-- 禁止数字识自动别为电话号码 -->
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Barcode</title>
+		<script>
+			(function(w) {
+				s();
+				var e = ("onorientationchange" in w) ? "orientationchange" : "resize";
+				w.addEventListener(e, function() {
+					setTimeout(function() {
+						s()
+					}, 200)
+				}, false);
+
+				function s() {
+					var a = w.innerWidth;
+					var b = 20 * (a / 320);
+					if(b > 40) {
+						b = 40;
+					}
+					document.querySelector("html").style.fontSize = b + "px";
+				}
+
+			})(window);
+		</script>
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+		<style type="text/css" media="screen">
+			.hdata {
+				height: 2.5rem;
+				text-align: center;
+				line-height: 2.5rem;
+				color: rgba(255, 255, 255, 0.8);
+				font-size: 0.9rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+	/*
+			.ditem1 {
+				height: 2.5rem;
+				text-align: center;
+				line-height: 1rem;
+				cursor: pointer;
+			}*/
+			
+			.del_btn {
+				width: 4rem;
+				height: 2.5rem;
+				text-align: center;
+				line-height: 2.5rem;
+				color: rgba(255, 255, 255, 0.7) !important;
+				float: right;
+				background: rgba(255,255,255,0.1);
+				/*border: 1px solid rgba(255,255,255,0.3);*/
+			}
+			
+			.til_bak p {
+				color: rgba(255, 255, 255, 0.7) !important;
+				line-height: 2.5rem !important;
+			}
+			
+			.dcontent {
+				width: 100%;
+				float: left;
+			}
+			
+			.button_li {
+				background: rgba(255, 255, 255, 0.3) !important;
+				color: rgba(255, 255, 255, 0.8);
+				border: 1px solid rgba(255, 255, 255, 0.2) !important;
+				width: 26% !important;
+				margin: 1rem 0.5rem 0.5rem 0.5rem !important;
+				float: left;
+			}
+			
+			.dlist1{
+				width: 95%;
+				background: rgba(255, 255, 255, 0.3) !important;
+				color: rgba(255, 255, 255, 0.8);
+				
+				float: left;
+				margin: 1rem 0.5rem !important;
+			}
+			.ercode{
+				
+			}
+			.ercode img{
+				display: inline-block;
+				width: 1rem;padding-bottom: 0.5rem;
+				line-height: 2rem;
+				
+			}
+			.nvtt{
+				font-size: 0.9rem;
+				line-height: 3rem;
+			}
+		</style>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/mui.js"></script>
+			<script type="text/javascript" src="../js/public.js"></script>
+	</head>
+<script>
+$(document).ready(function(){
+	$(".til_bak").click(function () {
+    window.location.href = '../dk.html';
+});
+})
+
+</script>
+	<body onload="img=document.getElementById('bimg');">
+		<header class="header">
+			<div class="nvbt til_bak">
+				<p class="back_befo" id="leave">
+					<img src="../img/nav_fh@2x.png" alt="png" /><span>返回</span>
+
+				</p>
+			</div>
+			<div class="nvtt">扫描多个</div>
+			<!--<div class="ercode">
+				<img src="../images/piliang@2x.png" alt="" />
+			</div>-->
+		</header>
+		<div id="dcontent" class="dcontent">
+			<div class="button button_li" onclick="clicked('barcode_scan2.html',true,true);">扫一扫</div>
+			<div id="clearAll" class="button button-waring button_li" onclick="cleanHistroy();">清空</div>
+			<div class="button button-waring button_li" onclick="sendmassage();">发送</div>
+			<div id="history1" class="dlist1">
+				<div id="nohistory1" class="ditem1">
+				</div>
+			</div>
+		</div>
+		<!--<div id="output">
+Barcode提供二维码扫描识别功能，支持调用摄像头即时扫描二维码，也可直接输入图片进行扫描识别。
+		</div>-->
+	</body>
+	<script type="text/javascript" src="../js/immersed.js"></script>
+
+</html>

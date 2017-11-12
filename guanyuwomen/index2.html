@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="upgrade_app_wgt()">当前版本<span id="version_id"></span></button> 
+	</body>
+</html>
+<script type="text/javascript">
+
+//检查更新
+		if(sessionStorage.getItem('upgrade') !='1'){
+                                     plus.runtime.getProperty(plus.runtime.appid,function(inf){ 
+                    checkUpdate( inf.version); 
+                    sessionStorage.setItem('upgrade','1');
+                });
+            }
+//在页面中初始化plus插件
+         mui.init();
+         mui.plusReady(function(){
+            plus.runtime.getProperty(plus.runtime.appid,function(inf){ 
+                     document.getElementById("version_id").innerHTML = inf.version;  
+
+                });  
+         });
+         //检测升级
+function  upgrade_app_wgt(){
+    plus.runtime.getProperty(plus.runtime.appid,function(inf){ 
+        checkUpdate( inf.version); 
+        console.log(inf.version)
+        //sessionStorage.setItem('upgrade','1');
+    });  
+}
+
+
+	var _config = {url : 'http://www.xxxxx.com/'}
+var checkUrl= _config.url + "appgys/upgrade.php";
+//需要传递当前的版本
+function checkUpdate( wgtVer ){
+
+    plus.nativeUI.showWaiting("检测更新...");
+    mui.ajax( checkUrl , { dataType : "json", type : 'POST', 
+            data : {ver : wgtVer},
+            success : function(json){  
+                plus.nativeUI.closeWaiting();
+                if( parseInt(json.code) ==1 ){                           
+                    //可以升级
+                    plus.nativeUI.confirm("检查到当前版本有最新更新，下载升级？",
+                        function(event){
+                            if(event.index ==0){
+                                console.log('下载地址：'+_config.url + json.url)
+                                downWgt(_config.url + json.url); //下载更新版的地址
+                            }                        
+                        } ,'系统消息',['马上升级','下次再说']);                
+                } else{  
+                    plus.nativeUI.toast("无新版本可更新！");
+                }
+            },
+            error : function(xhr, error){ 
+                plus.nativeUI.closeWaiting();
+                plus.nativeUI.toast('检测更新失败！') ;
+            }
+        }) ;     
+}
+// 下载wgt文件
+
+function downWgt(wgtUrl){
+    plus.nativeUI.showWaiting("下载更新文件...");
+    plus.downloader.createDownload( wgtUrl, {filename:"_doc/update/"}, function(d,status){
+        if ( status == 200 ) { 
+            //console.log("下载wgt成功："+d.filename);
+            installWgt(d.filename); // 安装wgt包
+        } else {
+            //console.log("下载wgt失败！");
+            plus.nativeUI.alert("下载更新失败！");
+        }
+        plus.nativeUI.closeWaiting();
+    }).start();
+}
+// 更新应用资源  
+function installWgt(path){
+    plus.nativeUI.showWaiting("安装更新文件...");
+    plus.runtime.install(path,{},function(){
+        plus.nativeUI.closeWaiting();        
+        plus.nativeUI.alert("应用资源更新完成！",function(){
+            plus.runtime.restart();
+        });
+    },function(e){
+        plus.nativeUI.closeWaiting();        
+        plus.nativeUI.alert("安装更新文件失败["+e.code+"]："+e.message);
+    });
+}
+</script>

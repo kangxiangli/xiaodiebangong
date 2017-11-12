@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta id="viewport" name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <title>我的积分</title>
+    <link href="../css/public.css" rel="stylesheet" />
+    <link href="css/wodejifen.css" rel="stylesheet" />
+    <script>
+        (function (w) {
+            s();
+            var e = ("onorientationchange" in w) ? "orientationchange" : "resize";
+            w.addEventListener(e, function () {
+                setTimeout(function () {
+                    s()
+                }, 200)
+            }, false);
+            function s() {
+                var a = w.innerWidth;
+                var b = 20 * (a / 320);
+                if (b > 40) {
+                    b = 40;
+                }
+                document.querySelector("html").style.fontSize = b + "px";
+            }
+        })(window);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="wodeJf">
+    <div class="til_bak">
+        <p class="back_befo" id="leave">
+            <img src="../img/nav_fh@2x.png" alt="png" /><span>返回</span>
+        </p>充值
+    </div>
+    <div id="chongZhi" class="chongZhi">
+    		<div class="choose">请选择充值积分</div>
+            <p class="dk_jifen">200</p>
+            <p class="dk_jifen">500</p>
+            <p class="dk_jifen">1000</p>
+            <!--<input type="button" class="weixin" id="weixin"/>
+			-->
+   </div>
+    <script src="../js/global.js"></script>
+    <script src="../js/iscroll.js"></script>
+    <script src="js/wodejifen.js"></script>
+    <script src="js/mui.min.js"></script>
+	<script src="js/mui.zoom.js">	</script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="js/mui.previewimage.js"></script>
+	<script src="js/tools.js" ></script>
+    <script>
+        var jifenMokuai = new IScroll('#jifenMokuai', { scrollX: true, freeScroll: true, click: true });
+
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+            jifenMokuai.refresh();
+
+        }, false);
+    </script>
+</body>
+</html>
+<script>
+		var wxChannel = null; // 微信支付
+		var aliChannel = null; // 支付宝支付
+		var channel = null; 
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		
+		mui.plusReady(function() {  
+			// 获取支付通道
+    			plus.payment.getChannels(function(channels){
+    				aliChannel=channels[0];
+       			wxChannel=channels[1];
+       			checkServices(wxChannel)
+    			},function(e){
+    				
+       			 alert("获取支付通道失败："+e.message);
+       			
+    			});
+		})
+		$("#chongZhi").on("tap", ".dk_jifen", function(){
+			console.log("微信");
+			pay('wxpay');
+			
+		})
+		// 检测是否安装支付服务
+function checkServices(pc){
+	if(!pc.serviceReady){
+		var txt=null;
+		switch(pc.id){
+			default:
+			txt="系统未安装“"+pc.description+"”服务，无法完成支付，是否立即安装？";
+			break;
+		}
+		plus.nativeUI.confirm(txt,function(e){
+			if(e.index==0){
+				pc.installService();
+			}
+		},pc.description);
+	}
+}
+
+//		document.getElementById('dk_jifen').addEventListener('tap',function() {
+//			console.log("微信");
+//			pay('wxpay');
+//		})
+
+	
+		var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=';
+		var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=';
+		// 2. 发起支付请求
+		function pay(id){
+    			// 从服务器请求支付订单
+    			var PAYSERVER='';
+    			if(id=='alipay'){
+       			PAYSERVER=ALIPAYSERVER;
+       			channel = aliChannel;
+   	 		}else if(id=='wxpay'){
+        			PAYSERVER=WXPAYSERVER;
+        			channel = wxChannel;
+    			}else{
+        			plus.nativeUI.alert("不支持此支付通道！",null,"捐赠");
+        			return;
+   			 }
+    			var xhr=new XMLHttpRequest();
+    			xhr.onreadystatechange=function(){
+        			switch(xhr.readyState){
+            			case 4:
+            			if(xhr.status==200){
+                			plus.payment.request(channel,xhr.responseText,function(result){
+                    			plus.nativeUI.alert("支付成功！",function(){
+                       	 		back();
+                   	 		});
+                			},function(error){
+       					plus.nativeUI.alert("支付失败：" + error.code);
+                			});
+            			}else{
+                			alert("获取订单信息失败！");
+            			}
+            			break;
+            		default:
+            		break;
+        		}
+   		 }
+    		xhr.open('GET',PAYSERVER);
+    		xhr.send();
+	}
+		
+	</script>

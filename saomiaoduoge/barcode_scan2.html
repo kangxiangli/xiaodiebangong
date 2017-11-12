@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>扫描多个</title>
+		 <script type="text/javascript" src="../js/global.js"></script>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		
+		<script type="text/javascript" src="../js/mui.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8"/>
+		<style type="text/css">
+#bcid {
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	bottom: 44px;
+	text-align: center;
+}
+.tip {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-shadow: 0px -1px #103E5C;
+}
+footer {
+	width: 100%;
+	height: 44px;
+	position: absolute;
+	bottom: 0px;
+	line-height: 44px;
+	text-align: center;
+	color: #FFF;
+}
+.fbt {
+	width: 50%;
+	height: 100%;
+	background-color: #4F4D72;
+	float: left;
+}
+.fbt:active {
+  	-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+#header{
+	background-color: #4F4D72;
+	height: 50px;
+}
+.nvtt{
+	font-size: 16px;
+	
+}
+.idoc {
+	margin-top: 0.8rem;
+	margin-left:0.8rem ;
+	width: 1.5rem;
+	height: 1.5rem;
+		background:url("img/1tiao@2x.png") no-repeat;
+	background-size: cover;
+}
+
+		</style>
+	</head>
+	<body style="background-color: #000000;">
+		<header id="header">
+			<div class="nvbt iback" ></div>
+			<div class="nvtt">小蝶扫码</div>
+			<div class="nvbt idoc ewm" ><!--<img src="img/2er@2x.png"/>--></div>
+		</header>
+		<div id="bcid">
+			<div style="height:40%"></div>
+			<p class="tip">...载入中...</p>
+		</div>
+		<footer>
+			<div class="fbt">返　回</div>
+			<div id="btCancel" class="fbt" onclick="scanSwitch()">暂　停</div>
+		</footer>
+	</body>
+</html>
+<script type="text/javascript">
+	//点击二维码
+		$(".ewm").click(function() {
+			closescan();
+		 	openNewWin("tarcode_scan.html");
+		     closeWin();
+			
+	})
+//点击返回和暂停
+			$(".iback,.fbt").click(function() {
+//			var scanView=plus.webview.getWebviewById("barcode_scan2.html");
+//          closeWinTo(scanView);
+closeWin();
+	
+		})
+		
+</script>
